@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <div class="container">
+      <h3>TapGame</h3>
+      <span id="spanCount" style="font-size: 24px; color: #C3F882;">Рахунок: 0</span>
+      <div id="tapArea"></div>
+      <div class="hidden"><h4 class="game-over">Game Over...</h4></div>
+   </div>
+
+   <script>
+      var spanCount = document.getElementById('spanCount');
+      var hidden = document.querySelector('.hidden')
+      var count = 0;
+
+      var tapArea = document.getElementById('tapArea');
+      var img = document.createElement('img');
+      img.src = 'img/level-1.webp';
+      tapArea.append(img);
+      
+      tapArea.addEventListener('click', function(){
+         count ++;
+         spanCount.textContent ='Рахунок: '+ count + '/ 10';
+         
+         var spanAnimated = document.createElement('span');
+         spanAnimated.innerHTML = '+1'
+         tapArea.append(spanAnimated);
+         spanAnimated.className = 'spanTest'
+         
+
+         if (count > 10){
+            count = count + 1
+            spanCount.textContent ='Рахунок: '+ count + '/ 30';
+            spanCount.style.color = '#FDE58E';
+            spanAnimated.innerHTML = '+2'
+            tapArea.firstElementChild.src = 'img/level-2.png';
+         }
+         if (count > 30){
+            count = count + 1
+            spanCount.textContent ='Рахунок: '+ count + '/ 60';
+            spanCount.style.color = '#FFCD82';
+            spanAnimated.innerHTML = '+3'
+            tapArea.firstElementChild.src = 'img/level-3.png';
+         }
+         if (count > 60){
+            count = count + 1
+            spanCount.textContent ='Рахунок: '+ count + '/ 120';
+
+            spanCount.style.color = '#FB6667';
+            spanAnimated.innerHTML = '+4'
+            tapArea.firstElementChild.src = 'img/level-4.png';
+         }
+         if (count > 120){
+            count = count + 1
+            spanCount.textContent ='Рахунок: '+ count + '/ 300';
+            spanCount.style.color = '#942EE4';
+            spanAnimated.innerHTML = '+5'
+            tapArea.firstElementChild.src = 'img/level-5.svg';
+         }
+         if (count >= 300){
+            hidden.classList.remove('hidden')
+            // var gameOver = document.createElement = 'h4';
+            // gameOver.innerHTML = 'Game Over...'
+            // tapArea.append(gameOver);
+
+         }
+
+         if (count >= 310) {
+            tapArea.firstElementChild.style.filter = 'invert(1)';
+            let gameOver = document.querySelector('h4');
+            gameOver.innerHTML = '<b style="color:#fff;">DEAD MODE</b>'
+         }
+      })
+   </script>
+</body>
+</html>
